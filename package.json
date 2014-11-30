@@ -1,0 +1,38 @@
+{
+  "name": "scrollend",
+  "version": "1.0.0",
+  "description": "Flexible scroll end event for the browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "./node_modules/browserify/bin/cmd.js browser-build.js -o build/scrollend.js",
+    "watch": "watchify browser-build.js -o build/scrollend.js",
+    "build": "./node_modules/browserify/bin/cmd.js browser-build.js -o build/scrollend.js"
+  },
+  "keywords": [
+    "scroll",
+    "browser",
+    "frontend",
+    "event"
+  ],
+  "dependencies": {
+    "jquery": "^2.1.1"
+  },
+  "author": "Talon",
+  "license": "MIT",
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {
+    "browserify": "^6.3.3",
+    "watchify": "^2.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LegitTalon/scrollend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LegitTalon/scrollend/issues"
+  },
+  "homepage": "https://github.com/LegitTalon/scrollend"
+}

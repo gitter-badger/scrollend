@@ -18,7 +18,8 @@ or
 // Skip this line if you are not using browserify.
 var Scrollend = require('scrollend');
 
-var scrollend = Scrollend();
+var scrollend = new Scrollend();
+
 scrollend(function() {
   console.log('done scrolling');
 });

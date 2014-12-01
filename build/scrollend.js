@@ -16,22 +16,30 @@ window.Scrollend = require('./');
  * Flexible scrollend event for the browser.
  *
  * @file Scrollend
- * @author Talon
+ * @author T-Pain
  */
 var EventEmitter = require('events').EventEmitter;
 var inherits     = require('util').inherits;
 var $            = require('jquery');
 
 var Scrollend = function(timeout) {
+  var milli = timeout || 250;
+
+  // Ensure that this is being called as a constructor.
   if (!(this instanceof Scrollend)) return new Scrollend(timeout);
-  timeout = timeout || 250;
-  var self = this;
+
+  // Do stuff during scroll event.
   $(window).scroll(function() {
-    clearTimeout($.data(this, 'scrollTimer'));
-    $.data(this, 'scrollTimer', setTimeout(function() {
-      self.emit('scrollend');
-    }, timeout));
-  });
+
+    // Clear previous timer.
+    clearTimeout($.data(window, 'scrollTimer'));
+
+    // Attach timer.
+    $.data(window, 'scrollTimer', setTimeout(function() {
+      this.emit('scrollend');
+    }.bind(this), milli));
+
+  }.bind(this));
 };
 
 inherits(Scrollend, EventEmitter);
@@ -48,8 +56,9 @@ Scrollend.prototype.add = function(fn) {
  * @exports
  */
 module.exports = function(timeout) {
-  var s = new Scrollend(timeout);
-  return s.add.bind(s);
+  var scrollend = new Scrollend(timeout);
+
+  return scrollend.add.bind(scrollend);
 };
 
 },{"events":3,"jquery":8,"util":7}],3:[function(require,module,exports){
